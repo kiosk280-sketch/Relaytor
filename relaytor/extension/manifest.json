@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Relaytor",
+  "version": "0.1.0",
+  "description": "Send coding tasks from web AI chats to a local coding agent via Relaytor Core.",
+  "permissions": ["storage", "activeTab", "scripting", "clipboardWrite"],
+  "host_permissions": ["http://127.0.0.1:5000/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html" },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://chat.mistral.ai/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
